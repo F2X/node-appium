@@ -12,4 +12,10 @@ ARG APPIUM_VERSION=1.6.0
 RUN npm install -q -g appium@$APPIUM_VERSION
 RUN npm install -q -g appium-doctor
 
-RUN appium-doctor --android
+COPY *.json /
+COPY *.sh /
+
+VOLUME /opt/appium
+
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
